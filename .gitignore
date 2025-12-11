@@ -1,1 +1,1 @@
-.vs/bin
+# Visual Studio.vs/*.user*.suo# Build outputbin/obj/# SQLite temp files*.db-shm*.db-wal*.db-journal# PlantSim local configs (pokud nìjaké vytváøíš)*.lock# Publish output/app.publish/
