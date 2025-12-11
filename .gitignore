@@ -1,1 +1,1 @@
-# Visual Studio.vs/*.user*.suo# Build outputbin/obj/# SQLite temp files*.db-shm*.db-wal*.db-journal# PlantSim local configs (pokud nìjaké vytváøíš)*.lock# Publish output/app.publish/
+# Visual Studio.vs/*.user*.suo# Build outputbin/obj/# SQLite temp files*.db-shm*.db-wal*.db-journal# App configuration cachewwwroot/config/# Custom CSS folderswwwroot/css/custom/# Ignore json config used by UIcolumnNames.json
