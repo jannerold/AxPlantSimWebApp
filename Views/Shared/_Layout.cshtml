@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AxPlantSimWebApp</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AxPlantSimWebApp.styles.css" asp-append-version="true" />
+
+    <!-- Sidebar custom styles -->
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+
+    <!-- Bootstrap Table -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">AxPlantSimWebApp</div>
+
+        <a asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <a asp-controller="Database" asp-action="Index">Database Tables</a>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main">
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+
+        <footer class="border-top footer text-muted p-3">
+            &copy; 2025 - AxPlantSimWebApp -
+            <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </footer>
+    </main>
+
+    <!-- jQuery + Bootstrap -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Bootstrap Table + filter control -->
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.22.1/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Database Tables";
+}
+
+<h2>Database Tables</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Table name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Database"
+                       asp-action="Table"
+                       asp-route-tableName="@t">
+                        @t
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

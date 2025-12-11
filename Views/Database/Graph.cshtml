@@ -1,0 +1,58 @@
+﻿@model AxPlantSimWebApp.Services.TableViewModel
+
+<h2>Graf - @ViewBag.TableName</h2>
+
+<div class="row mb-3">
+    <div class="col-md-3">
+        <label>Typ grafu</label>
+        <select id="graphType" class="form-select"></select>
+    </div>
+
+    <div class="col-md-3">
+        <label>Osa X</label>
+        <select id="xCol" class="form-select"></select>
+    </div>
+
+    <div class="col-md-3">
+        <label>Osa Y</label>
+        <select id="yCol" class="form-select"></select>
+    </div>
+
+    <div class="col-md-3 d-flex align-items-end">
+        <button id="btnDraw" class="btn btn-primary w-100">Zobrazit</button>
+    </div>
+</div>
+
+<canvas id="chartCanvas" height="220"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="~/js/chart-manager.js"></script>
+
+    <script>
+        const rows = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Rows));
+        const columns = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Columns));
+
+        // Initialize engine
+        ChartManager.init("chartCanvas", rows, columns);
+
+        // Populate dropdowns
+        ChartManager.populateSelectors(
+          "xCol", "yCol", "graphType",
+          "@ViewBag.XCol",
+          "@ViewBag.YCol",
+          "@ViewBag.ChartType"
+        );
+
+        // Draw on button click
+        document.getElementById("btnDraw").onclick = function () {
+          const t = document.getElementById("graphType").value;
+          const x = document.getElementById("xCol").value;
+          const y = document.getElementById("yCol").value;
+          ChartManager.draw(t, x, y);
+        };
+
+        // Draw default graph
+        ChartManager.draw("@ViewBag.ChartType", "@ViewBag.XCol", "@ViewBag.YCol");
+    </script>
+}

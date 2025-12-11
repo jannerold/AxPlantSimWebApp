@@ -1,0 +1,202 @@
+﻿@model AxPlantSimWebApp.Services.TableViewModel
+
+@{
+    ViewData["Title"] = $"Table - {Model.TableName}";
+}
+
+<h2>@Model.TableName</h2>
+
+@if (!Model.Columns.Any())
+{
+    <p>No columns found.</p>
+}
+else
+{
+    <h3>Vykreslit graf</h3>
+
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <label>Typ grafu</label>
+            <select id="graphType" class="form-select">
+                <option value="line">Line</option>
+                <option value="bar">Bar</option>
+                <option value="scatter">Scatter</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label>Osa X</label>
+            <select id="xCol" class="form-select">
+                @foreach (var col in Model.Columns)
+                {
+                    <option value="@col">@col</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label>Osa Y</label>
+            <select id="yCol" class="form-select">
+                @foreach (var col in Model.Columns)
+                {
+                    <option value="@col">@col</option>
+                }
+            </select>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <button id="btnShowGraph" class="btn btn-primary w-100">
+                Zobrazit graf
+            </button>
+        </div>
+    </div>
+
+    <hr />
+
+    <table id="dynTable"
+           class="table table-striped table-bordered table-sm"
+           data-toggle="table"
+           data-pagination="true"
+           data-page-size="25"
+           data-page-list="[10, 25, 50, 100]"
+           data-search="false"
+           data-filter-control="true"
+           data-show-columns="true"
+           data-sortable="true">
+        <thead>
+            <tr>
+                @foreach (var col in Model.Columns)
+                {
+                    // vše sortable + textový filter
+                    <th data-field="@col"
+                        data-sortable="true"
+                        data-filter-control="input">
+                        @col
+                    </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model.Rows)
+            {
+                <tr>
+                    @foreach (var col in Model.Columns)
+                    {
+                        <td data-col="@col" data-id="@row["Id"]">@row[col]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @section Scripts {
+    <script>
+        $(function () {
+          // inicializace Bootstrap Table
+          $("#dynTable").bootstrapTable();
+
+          // === INLINE EDITACE (text/number) ===
+          let originalValue = "";
+
+          $("#dynTable tbody").on("dblclick", "td", function () {
+            const cell = $(this);
+            const col = cell.data("col");
+            const id = cell.data("id");
+
+            // primární klíč needitujeme
+            if (col === "Id") {
+              return;
+            }
+
+            originalValue = cell.text().trim();
+
+            const input = $("<input type='text' class='form-control form-control-sm' />")
+              .val(originalValue);
+
+            cell.empty().append(input);
+            input.focus();
+
+            input.on("keydown", function (e) {
+              if (e.key === "Enter") {
+                input.blur();
+              } else if (e.key === "Escape") {
+                // ESC → vrátit původní hodnotu bez uložení
+                cell.text(originalValue);
+              }
+            });
+
+            input.on("blur", function () {
+              const newValue = input.val().toString().trim();
+
+              if (newValue === originalValue) {
+                cell.text(originalValue);
+                return;
+              }
+
+              const updateData = {
+                tableName: "@Model.TableName",
+                row: {}
+              };
+
+              updateData.row["Id"] = id;
+              updateData.row[col] = newValue;
+
+              fetch("/Database/UpdateCell", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updateData)
+              })
+                .then(r => {
+                  if (!r.ok) {
+                    alert("Update failed");
+                    cell.text(originalValue);
+                    return;
+                  }
+
+                  // při stránkování / řazení je dobré aktualizovat i interní data BT
+                  cell.text(newValue);
+
+                  // najdeme řádek v BT a přepíšeme
+                  const $row = cell.closest("tr");
+                  const rowIndex = $row.data("index");
+                  if (rowIndex !== undefined) {
+                    const fieldName = col;
+                    $("#dynTable").bootstrapTable("updateCell", {
+                      index: rowIndex,
+                      field: fieldName,
+                      value: newValue
+                    });
+                  }
+                })
+                .catch(err => {
+                  console.error(err);
+                  alert("Network error");
+                  cell.text(originalValue);
+                });
+            });
+          });
+        });
+    </script>
+
+    <script>
+        window.currentTableModel = {
+          rows: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Rows)),
+          columns: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Columns)),
+          tableName: "@Model.TableName"
+        };
+    </script>
+
+    <script src="~/js/table-graph.js"></script>
+
+    <script>
+        $("#btnShowGraph").on("click", function () {
+          const tableName = "@Model.TableName";
+          const x = $("#xCol").val();
+          const y = $("#yCol").val();
+          const t = $("#graphType").val();
+          window.open(`/Database/Graph?tableName=${tableName}&xCol=${x}&yCol=${y}&chartType=${t}`, "_blank");
+        });
+    </script>
+
+  }
+}
