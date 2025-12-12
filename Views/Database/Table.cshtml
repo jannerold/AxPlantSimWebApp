@@ -1,10 +1,16 @@
 ﻿@model AxPlantSimWebApp.Services.TableViewModel
+@inject AxPlantSimWebApp.Services.ColumnNameMapper ColumnNames
 
 @{
     ViewData["Title"] = $"Table - {Model.TableName}";
 }
 
-<h2>@Model.TableName</h2>
+@{
+    var tableDisplay = ColumnNames.GetTableDisplayName(Model.TableName);
+    ViewData["Title"] = $"Table - {tableDisplay}";
+}
+
+<h2>@tableDisplay</h2>
 
 @if (!Model.Columns.Any())
 {
@@ -29,7 +35,7 @@ else
             <select id="xCol" class="form-select">
                 @foreach (var col in Model.Columns)
                 {
-                    <option value="@col">@col</option>
+                    <option value="@col">@ColumnNames.GetDisplayName(Model.TableName, col)</option>
                 }
             </select>
         </div>
@@ -39,7 +45,7 @@ else
             <select id="yCol" class="form-select">
                 @foreach (var col in Model.Columns)
                 {
-                    <option value="@col">@col</option>
+                    <option value="@col">@ColumnNames.GetDisplayName(Model.TableName, col)</option>
                 }
             </select>
         </div>
@@ -71,8 +77,9 @@ else
                     <th data-field="@col"
                         data-sortable="true"
                         data-filter-control="input">
-                        @col
+                        @ColumnNames.GetDisplayName(Model.TableName, col)
                     </th>
+
                 }
             </tr>
         </thead>

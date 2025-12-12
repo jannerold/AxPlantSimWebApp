@@ -1,0 +1,34 @@
+﻿/* tabulky, formy, tlačítka */
+
+.table-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .75rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: background .15s ease, padding-left .15s ease;
+}
+
+.table-list-item:hover {
+    background: #f8f9fa;
+    padding-left: 1.25rem;
+}
+
+.table-list-item .table-name {
+    font-weight: 500;
+}
+
+.table-list-item .arrow {
+    font-size: 1.25rem;
+    opacity: 0.35;
+    transition: opacity .15s ease, transform .15s ease;
+}
+
+.table-list-item:hover .arrow {
+    opacity: 0.65;
+    transform: translateX(3px);
+}

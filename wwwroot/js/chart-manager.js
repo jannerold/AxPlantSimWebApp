@@ -1,79 +1,148 @@
-﻿// ---------------------------------------------------------------
-//  CHART MANAGER – GLOBAL GRAPH ENGINE FOR THE WHOLE APPLICATION
-// ---------------------------------------------------------------
+﻿const ChartManager = {
 
-window.ChartManager = {
     chart: null,
+    canvasId: null,
     rows: [],
     columns: [],
-    ctx: null,
+    columnsDisplay: {},
 
-    // Initialize chart engine
-    init(canvasId, rows, columns) {
+    //
+    // Inicializace správy grafů
+    //
+    init(canvasId, rows, columns, columnsDisplay) {
+        this.canvasId = canvasId;
         this.rows = rows;
         this.columns = columns;
-        this.ctx = document.getElementById(canvasId).getContext("2d");
+        this.columnsDisplay = columnsDisplay;
+
+        // default fallback – pokud nějaký překlad chybí
+        for (const col of columns) {
+            if (!this.columnsDisplay[col]) {
+                this.columnsDisplay[col] = col;
+            }
+        }
     },
 
-    // Populate dropdowns globally
-    populateSelectors(xSelectId, ySelectId, typeSelectId, selectedX, selectedY, selectedType) {
+    //
+    // Naplnění dropdownů pro typ grafu a sloupce
+    //
+    populateSelectors(xSelectId, ySelectId, typeSelectId, defaultX, defaultY, defaultType) {
 
         const xSel = document.getElementById(xSelectId);
         const ySel = document.getElementById(ySelectId);
-        const tSel = document.getElementById(typeSelectId);
+        const typeSel = document.getElementById(typeSelectId);
 
-        // graph types
-        tSel.innerHTML = `
-      <option value="line">Line</option>
-      <option value="bar">Bar</option>
-      <option value="scatter">Scatter</option>
-    `;
+        // dostupné typy grafů
+        const types = ["line", "bar", "scatter"];
+        for (const t of types) {
+            const opt = new Option(t.charAt(0).toUpperCase() + t.slice(1), t);
+            typeSel.add(opt);
+        }
+        typeSel.value = defaultType || "line";
 
-        // columns for x + y
-        xSel.innerHTML = "";
-        ySel.innerHTML = "";
+        // dostupné sloupce (přeložené názvy)
+        for (const col of this.columns) {
+            xSel.add(new Option(this.columnsDisplay[col], col));
+            ySel.add(new Option(this.columnsDisplay[col], col));
+        }
 
-        this.columns.forEach(c => {
-            xSel.innerHTML += `<option value="${c}">${c}</option>`;
-            ySel.innerHTML += `<option value="${c}">${c}</option>`;
-        });
-
-        // restore incoming values
-        if (selectedX) xSel.value = selectedX;
-        if (selectedY) ySel.value = selectedY;
-        if (selectedType) tSel.value = selectedType;
+        xSel.value = defaultX || this.columns[0];
+        ySel.value = defaultY || this.columns[0];
     },
 
-    // Draw or redraw graph
-    draw(chartType, xCol, yCol) {
+    //
+    // Vyrobení dat pro graf
+    //
+    extractData(xCol, yCol) {
 
-        // Data
+        // osa X → text
         const labels = this.rows.map(r => r[xCol]);
-        const values = this.rows.map(r => Number(r[yCol]));
 
-        // Destroy previous chart
-        if (this.chart) this.chart.destroy();
+        // osa Y → čísla
+        const values = this.rows.map(r => {
+            const v = r[yCol];
+            const num = Number(v);
+            return isNaN(num) ? null : num;
+        });
 
-        // Create new one
-        this.chart = new Chart(this.ctx, {
-            type: chartType,
-            data: {
+        return { labels, values };
+    },
+
+    //
+    // Hlavní metoda pro vykreslení grafu
+    //
+    draw(type, xCol, yCol) {
+
+        const ctx = document.getElementById(this.canvasId);
+
+        // zrušíme starý graf
+        if (this.chart) {
+            this.chart.destroy();
+        }
+
+        const { labels, values } = this.extractData(xCol, yCol);
+        const xLabel = this.columnsDisplay[xCol] || xCol;
+        const yLabel = this.columnsDisplay[yCol] || yCol;
+
+        //
+        // Scatter graf má specifická data
+        //
+        let dataConfig = null;
+
+        if (type === "scatter") {
+
+            const scatterData = this.rows.map(r => ({
+                x: Number(r[xCol]),
+                y: Number(r[yCol])
+            }));
+
+            dataConfig = {
+                datasets: [{
+                    label: yLabel,
+                    data: scatterData,
+                    pointRadius: 4
+                }]
+            };
+
+        } else {
+
+            dataConfig = {
                 labels: labels,
                 datasets: [{
-                    label: `${yCol} podle ${xCol}`,
-                    data: values,
-                    borderColor: "#007bff",
-                    backgroundColor: "rgba(0, 123, 255, 0.25)",
-                    borderWidth: 2,
-                    pointRadius: chartType === "scatter" ? 4 : 2,
-                    showLine: chartType !== "scatter"
+                    label: yLabel,
+                    data: values
                 }]
-            },
+            };
+        }
+
+        //
+        // vykreslení grafu
+        //
+        this.chart = new Chart(ctx, {
+            type: type,
+            data: dataConfig,
             options: {
                 responsive: true,
+
                 scales: {
-                    x: { title: { display: true, text: xCol } },
-                    y: { title: { display: true, text: yCol } }
+                    x: {
+                        title: {
+                            display: true,
+                            text: xLabel
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: yLabel
+                        }
+                    }
+                },
+
+                plugins: {
+                    legend: {
+                        display: true
+                    }
                 }
             }
         });

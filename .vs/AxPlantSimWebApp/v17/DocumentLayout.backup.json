@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\services\\tablebrowserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:services\\tablebrowserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\wwwroot\\config\\tablecolumnsedit.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:wwwroot\\config\\tablecolumnsedit.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\views\\database\\table.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:views\\database\\table.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\views\\database\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:views\\database\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|d:\\projekty_svn\\projects_general\\axiom\\axplantsimwebapp\\wwwroot\\css\\custom\\components.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{1CD46144-FA76-4EEB-84BE-B6E76D49DB5D}|AxPlantSimWebApp.csproj|solutionrelative:wwwroot\\css\\custom\\components.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TableBrowserService.cs",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Services\\TableBrowserService.cs",
+              "RelativeDocumentMoniker": "Services\\TableBrowserService.cs",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Services\\TableBrowserService.cs",
+              "RelativeToolTip": "Services\\TableBrowserService.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAuwMQAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-11T23:47:49.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "tableColumnsEdit.json",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\config\\tableColumnsEdit.json",
+              "RelativeDocumentMoniker": "wwwroot\\config\\tableColumnsEdit.json",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\config\\tableColumnsEdit.json",
+              "RelativeToolTip": "wwwroot\\config\\tableColumnsEdit.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-11T23:47:35.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADgAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-12-11T23:28:48.269Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Table.cshtml",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Views\\Database\\Table.cshtml",
+              "RelativeDocumentMoniker": "Views\\Database\\Table.cshtml",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Views\\Database\\Table.cshtml",
+              "RelativeToolTip": "Views\\Database\\Table.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T23:26:28.02Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "components.css",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\css\\custom\\components.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\custom\\components.css",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\wwwroot\\css\\custom\\components.css",
+              "RelativeToolTip": "wwwroot\\css\\custom\\components.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-12-11T23:21:37.571Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Views\\Database\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Database\\Index.cshtml",
+              "ToolTip": "D:\\PROJEKTY_SVN\\PROJECTS_GENERAL\\Axiom\\AxPlantSimWebApp\\Views\\Database\\Index.cshtml",
+              "RelativeToolTip": "Views\\Database\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-11T23:20:12.61Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+﻿{
+  "MyTable": {
+    "columns": {
+      "Id": { "editable": false },
+      "Name": { "editable": true },
+      "Value": { "editable": true },
+      "CreatedAt": { "editable": false }
+    }
+  }
+}

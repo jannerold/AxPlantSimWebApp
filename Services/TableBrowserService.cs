@@ -26,15 +26,21 @@ public class TableBrowserService
     using var cmd = conn.CreateCommand();
     cmd.CommandText =
       @"SELECT name
-          FROM sqlite_master
-         WHERE type = 'table'
-           AND name NOT LIKE 'sqlite_%'
-         ORDER BY name;";
+        FROM sqlite_master
+       WHERE type = 'table'
+         AND name NOT LIKE 'sqlite_%'
+       ORDER BY name;";
 
     using var reader = cmd.ExecuteReader();
     while (reader.Read())
     {
-      tables.Add(reader.GetString(0));
+      var tableName = reader.GetString(0);
+
+      // skryjeme EF Core systémovou tabulku
+      if (tableName.Equals("__EFMigrationsHistory", StringComparison.OrdinalIgnoreCase))
+        continue;
+
+      tables.Add(tableName);
     }
 
     return tables;
@@ -185,6 +191,44 @@ public class TableBrowserService
         return element.ToString();
     }
   }
+
+  public class TableColumnConfigService
+  {
+    private readonly Dictionary<string, Dictionary<string, bool>> _config;
+
+    public TableColumnConfigService(IWebHostEnvironment env)
+    {
+      var jsonPath = Path.Combine(env.WebRootPath, "config", "tableColumnsEdit.json");
+      var json = File.ReadAllText(jsonPath);
+
+      var tmp = JsonSerializer.Deserialize<Dictionary<string, TableConfig>>(json)
+                ?? new();
+
+      _config = tmp.ToDictionary(
+        t => t.Key,
+        t => t.Value.Columns.ToDictionary(c => c.Key, c => c.Value.Editable)
+      );
+    }
+
+    public bool IsEditable(string table, string column)
+    {
+      if (_config.ContainsKey(table) && _config[table].ContainsKey(column))
+        return _config[table][column];
+
+      return true; // default
+    }
+
+    private class TableConfig
+    {
+      public Dictionary<string, ColumnCfg> Columns { get; set; } = new();
+    }
+
+    private class ColumnCfg
+    {
+      public bool Editable { get; set; }
+    }
+  }
+
 }
 
 // ViewModel pro tabulku

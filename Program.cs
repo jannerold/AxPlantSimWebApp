@@ -6,6 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Configuration.AddJsonFile(
+  "columnNames.json",
+  optional: true,
+  reloadOnChange: true
+);
+
 // EF Core + SQLite
 builder.Services.AddDbContext<AppDbContext>(
   options => options.UseSqlite(builder.Configuration.GetConnectionString("SQLite"))
@@ -13,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(
 
 // naše services
 builder.Services.AddScoped<TableBrowserService>();
+builder.Services.AddSingleton<ColumnNameMapper>();
 
 var app = builder.Build();
 

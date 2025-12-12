@@ -5,8 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AxPlantSimWebApp</title>
 
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/lux/bootstrap.min.css" /> -->
+
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Variables (barvy, témata) -->
+    <link rel="stylesheet" href="~/css/variables.css" asp-append-version="true" />
+
+    <!-- Základní globální styly -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <!-- Vlastní rozložení aplikace -->
+    <link rel="stylesheet" href="~/css/custom/layout.css" asp-append-version="true" />
+
+    <!-- Komponenty – tabulky, editace, karty… -->
+    <link rel="stylesheet" href="~/css/custom/components.css" asp-append-version="true" />
+
+    <!-- Přepisy Bootswatch/Bootstrap -->
+    <link rel="stylesheet" href="~/css/custom/overrides.css" asp-append-version="true" />
+
+    <!-- Auto generované -->
     <link rel="stylesheet" href="~/AxPlantSimWebApp.styles.css" asp-append-version="true" />
 
     <!-- Sidebar custom styles -->
@@ -14,6 +33,7 @@
 
     <!-- Bootstrap Table -->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css" />
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -23,9 +43,9 @@
     <aside class="sidebar">
         <div class="logo">AxPlantSimWebApp</div>
 
-        <a asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Home" asp-action="Privacy">Privacy</a>
-        <a asp-controller="Database" asp-action="Index">Database Tables</a>
+        <a asp-controller="Home" asp-action="Index">Úvod</a>
+        <a asp-controller="Configuration" asp-action="Index">Konfigurace</a>
+        <a asp-controller="Database" asp-action="Index">Databázové tabulky</a>
     </aside>
 
     <!-- MAIN CONTENT AREA -->

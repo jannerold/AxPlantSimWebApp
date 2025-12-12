@@ -1,6 +1,12 @@
 ﻿@model AxPlantSimWebApp.Services.TableViewModel
+@inject AxPlantSimWebApp.Services.ColumnNameMapper ColumnNames
 
-<h2>Graf - @ViewBag.TableName</h2>
+@{
+    var tableName = (string)ViewBag.TableName ?? Model.TableName;
+    var tableDisplay = ColumnNames.GetTableDisplayName(tableName);
+}
+
+<h2>Graf - @tableDisplay</h2>
 
 <div class="row mb-3">
     <div class="col-md-3">
@@ -33,8 +39,16 @@
         const rows = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Rows));
         const columns = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Columns));
 
-        // Initialize engine
-        ChartManager.init("chartCanvas", rows, columns);
+        // mapování technický název sloupce -> český název
+        const columnsDisplay = {
+        @foreach (var col in Model.Columns)
+        {
+            <text>"@col": "@ColumnNames.GetDisplayName(tableName, col)",</text>
+        }
+        };
+
+        // Initialize engine (!!! nově s columnsDisplay)
+        ChartManager.init("chartCanvas", rows, columns, columnsDisplay);
 
         // Populate dropdowns
         ChartManager.populateSelectors(

@@ -1,70 +1,166 @@
+/* ------------------------------------------------------
+   Global variables (colors, text, accents)
+-------------------------------------------------------*/
+:root {
+    /* Text */
+    --bs-body-color: #444;
+    --heading-color: #222;
+    /* Accent */
+    --accent: #2d7ff9;
+    /* Sidebar */
+    --sidebar-bg: #2f343a;
+    --sidebar-hover: #3a4047;
+    --sidebar-text: #ddd;
+    /* Layout + borders */
+    --panel-bg: #ffffff;
+    --border-color: #e5e7eb;
+    /* Buttons (primary) */
+    --btn-primary-bg: var(--accent);
+    --btn-primary-hover: #1b6ee1;
+}
+
+
+/* ------------------------------------------------------
+   Global layout + typography
+-------------------------------------------------------*/
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
-
-/* ===== SIDEBAR LAYOUT ===== */
 
 body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
+    background: #f5f7fa;
 }
 
-/* LEFT SIDEBAR */
+/* Headings */
+h1, h2 {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+h2 {
+    margin-bottom: .5rem;
+}
+
+h2 + * {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+}
+
+
+h3 {
+    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 1.25rem 0 .5rem;
+}
+
+
+/* ------------------------------------------------------
+   Sidebar
+-------------------------------------------------------*/
+
 .sidebar {
-  width: 240px;
-  background-color: #343a40;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
 }
 
-.sidebar .logo {
-  padding: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
-  text-align: center;
-  background: #23272b;
-  border-bottom: 1px solid #3c4147;
+    .sidebar a {
+        padding: .75rem 1rem;
+        color: var(--sidebar-text);
+    }
+
+        .sidebar a:hover {
+            background: var(--sidebar-hover);
+            color: #fff;
+        }
+
+    .sidebar .logo {
+        background: #262a2f;
+        border-bottom: 1px solid #3a3f45;
+    }
+
+
+/* ------------------------------------------------------
+   Buttons
+-------------------------------------------------------*/
+
+.btn-primary {
+    background: var(--btn-primary-bg);
+    border-color: var(--btn-primary-bg);
 }
 
-.sidebar a {
-  color: #ddd;
-  padding: 0.75rem 1rem;
-  display: block;
-  text-decoration: none;
+    .btn-primary:hover {
+        background: var(--btn-primary-hover);
+        border-color: var(--btn-primary-hover);
+    }
+
+/* Universal focus */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 .2rem rgba(45, 127, 249, .25);
+    border-color: var(--accent);
 }
 
-.sidebar a:hover {
-  background-color: #495057;
-  color: white;
+
+/* ------------------------------------------------------
+   Forms
+-------------------------------------------------------*/
+
+.form-control,
+.form-select {
+    border: 1px solid #ced4da;
+    transition: border-color .15s, box-shadow .15s;
 }
 
-/* MAIN CONTENT */
-.main {
-  flex-grow: 1;
-  overflow-y: auto;
-  background: #f8f9fa;
+
+/* ------------------------------------------------------
+   Table styles
+-------------------------------------------------------*/
+
+.table {
+    color: var(--bs-body-color);
+    border-color: var(--border-color);
 }
 
-.content-wrapper {
-  padding: 1.5rem;
+    .table thead th {
+        background: #f8f9fa;
+        border-bottom: 2px solid var(--border-color);
+        font-weight: 600;
+    }
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f6f9fc;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #e9f2ff;
+}
+
+
+/* ------------------------------------------------------
+   Panels / sections
+-------------------------------------------------------*/
+
+.panel {
+    background: var(--panel-bg);
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: .5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }

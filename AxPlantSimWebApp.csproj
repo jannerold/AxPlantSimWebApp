@@ -10,7 +10,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Charts\" />
     <Folder Include="Views\Erp\" />
-    <Folder Include="Views\Settings\" />
     <Folder Include="Views\Simulation\" />
   </ItemGroup>
 
