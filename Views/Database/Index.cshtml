@@ -7,15 +7,26 @@
 
 <h2>Databázové tabulky</h2>
 
+<!-- Tlačítko Import -->
+<div class="mb-3">
+    <button class="btn btn-primary" id="btnImportData">
+        Importovat data
+    </button>
+</div>
+
 <div class="table-list mt-3">
     @foreach (var t in Model)
     {
-        <a asp-controller="Database"
-           asp-action="Table"
-           asp-route-tableName="@t"
-           class="table-list-item">
+        <a asp-controller="Database" asp-action="Table" asp-route-tableName="@t" class="table-list-item">
             <span>@ColumnNames.GetTableDisplayName(t)</span>
             <span class="arrow">›</span>
         </a>
     }
 </div>
+
+<script>
+    // Zatím nefunkční placeholder
+    document.getElementById("btnImportData").addEventListener("click", function () {
+      alert("Import dat není zatím implementován.");
+    });
+</script>
