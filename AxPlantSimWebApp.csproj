@@ -8,9 +8,6 @@
 
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Charts\" />
-    <Folder Include="Views\Erp\" />
-    <Folder Include="Views\Simulation\" />
   </ItemGroup>
 
   <ItemGroup>

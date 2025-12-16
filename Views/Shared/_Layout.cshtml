@@ -16,6 +16,9 @@
     <!-- Základní globální styly -->
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
+    <!-- Custom styly -->
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
+
     <!-- Vlastní rozložení aplikace -->
     <link rel="stylesheet" href="~/css/custom/layout.css" asp-append-version="true" />
 
@@ -44,8 +47,10 @@
         <div class="logo">AxPlantSimWebApp</div>
 
         <a asp-controller="Home" asp-action="Index">Úvod</a>
-        <a asp-controller="Configuration" asp-action="Index">Konfigurace</a>
         <a asp-controller="Database" asp-action="Index">Databázové tabulky</a>
+        <a asp-controller="Simulation" asp-action="Index">Simulace</a>
+        <a asp-controller="Charts" asp-action="Index">Grafy</a>
+        <a asp-controller="Configuration" asp-action="Index">Konfigurace</a>
     </aside>
 
     <!-- MAIN CONTENT AREA -->

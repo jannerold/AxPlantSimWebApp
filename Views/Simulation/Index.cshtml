@@ -1,0 +1,111 @@
+﻿@model AxPlantSimWebApp.Data.SimulationConfig
+
+@{
+    ViewData["Title"] = "Simulace";
+}
+
+<div class="page-head">
+    <h2>Simulace</h2>
+</div>
+
+<hr class="divider" />
+
+<!-- ================================= -->
+<!-- KONFIGURACE SIMULACE -->
+<!-- ================================= -->
+<div class="card mb-3">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>Základní nastavení simulace</span>
+        <small id="saveStatus" class="text-muted">Uloženo ✓</small>
+    </div>
+
+    <div class="card-body">
+        <form id="simConfigForm">
+            @Html.AntiForgeryToken()
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Start simulace</label>
+                    <input class="form-control"
+                           type="datetime-local"
+                           asp-for="StartTime"
+                           step="1" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Konec simulace</label>
+                    <input class="form-control"
+                           type="datetime-local"
+                           asp-for="SimulationTime"
+                           step="1" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center gap-2">
+                    <label class="form-label flex-grow-1 mb-0">
+                        Deadline zakázek (počet dnů)
+                    </label>
+                    <input class="form-control text-end"
+                           style="max-width:120px"
+                           asp-for="DeadlineDays"
+                           type="number" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6 d-flex align-items-center gap-2">
+                    <label class="form-label flex-grow-1 mb-0">
+                        Dnů s náhradním kalendářem
+                    </label>
+                    <input class="form-control text-end"
+                           style="max-width:120px"
+                           asp-for="ReplacementCalendarDays"
+                           type="number" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 d-flex align-items-center gap-2">
+                    <label class="form-label flex-grow-1 mb-0">
+                        Doplnění materiálu (počet hodin)
+                    </label>
+                    <input class="form-control text-end"
+                           style="max-width:120px"
+                           asp-for="MaterialLeadTimeHours"
+                           type="number" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="page-head-actions">
+    <button class="btn btn-primary" id="btnRunSimulation">
+        Spustit simulaci
+    </button>
+</div>
+
+<hr class="divider" />
+
+<!-- ================================= -->
+<!-- LOG SIMULACE -->
+<!-- ================================= -->
+<div class="card">
+    <div class="card-header">
+        Log simulace
+    </div>
+
+    <div class="card-body p-0">
+        <pre id="simulationLog" class="console">
+Čekám na spuštění simulace…
+        </pre>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/simulation.js" asp-append-version="true"></script>
+}
